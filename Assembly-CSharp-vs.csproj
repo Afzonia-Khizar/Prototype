@@ -44,7 +44,11 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\gamescripts\GUItest.cs" />
+     <Compile Include="Assets\Gui .cs" />
+     <Compile Include="Assets\Gui.cs" />
+     <Compile Include="Assets\NewBehaviourScript.cs" />
+     <Compile Include="Assets\gamescripts\gui test.cs" />
+     <Compile Include="Assets\gamescripts\guitest.cs" />
      <Compile Include="Assets\gamescripts\jumping.cs" />
      <Compile Include="Assets\gamescripts\running.cs" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />
