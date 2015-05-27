@@ -22,7 +22,7 @@ public class WaterSimple : MonoBehaviour
 		Vector4 offsetClamped = new Vector4(Mathf.Repeat(offset4.x,1.0f), Mathf.Repeat(offset4.y,1.0f), Mathf.Repeat(offset4.z,1.0f), Mathf.Repeat(offset4.w,1.0f));
 		mat.SetVector( "_WaveOffset", offsetClamped );
 		
-		Vector3 scale = new Vector3( 1.0f/waveScale, 1.0f/waveScale, 1 );
+		Vector3 scale = new Vector3( 0.5f/waveScale, 0.5f/waveScale, 1 );
 		Matrix4x4 scrollMatrix = Matrix4x4.TRS( new Vector3(offsetClamped.x,offsetClamped.y,0), Quaternion.identity, scale );
 		mat.SetMatrix( "_WaveMatrix", scrollMatrix );
 				

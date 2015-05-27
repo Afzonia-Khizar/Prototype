@@ -5,7 +5,7 @@ public class guitest : MonoBehaviour {
     public GUIStyle mystyle;
     public GUIStyle mystyle1;
     private float myslider = 1.0f;
-    
+
 
     void OnGUI()
     {
@@ -61,7 +61,9 @@ public class guitest : MonoBehaviour {
 
             Application.Quit();
         }
+        
         myslider = Labelslider(new Rect(240, 400, 80, 50), myslider, 0.0f, "volume");
+    
 
     }
     float Labelslider(Rect screenrect, float slidervalue, float slidermaxval, string labeltext)
@@ -71,5 +73,15 @@ public class guitest : MonoBehaviour {
         slidervalue = GUI.HorizontalSlider(screenrect, slidervalue, 5.0f, slidermaxval);
         return slidervalue;
     }
+    //public void OnGui()
+    //{
+
+
+    //    Rect x = new Rect(800, 150, 600, 500);
+    //    GUI.Label(x, "Time Elapsed!");
+    //    mystyle.font.material.color = Color.red;
+    //    mystyle.fontSize = 60;
+
+    //}
     
 }
