@@ -1,94 +1,150 @@
 using UnityEngine;
 using System.Collections;
 
-public class pickingobjects : MonoBehaviour {
-  
-    private int newjump = 20;
+public class pickingobjects : MonoBehaviour
+{
+  public Animation doorclip;
+   GameObject door;
+    private int newjump = 15;
     private int oldjump = 5;
     string message = "Time Elapsed!";
-    private int score = 0;
-    public GUIText guiscore ;
+    public static int score = 0;
+    public GUIText guiscore;
     public GUIText guitimer;
-  
+    //public float jumptime;
+    private float timer = 5f;
     public float time;
     private static bool b = false;
-  public GameObject CharacterMotor;
-  public CharacterMotor personcharacter;
+    public static bool iswin = false;
+    public static bool islose = false;
+    public GameObject CharacterMotor;
+    public CharacterMotor personcharacter;
+    GameObject player;
+   public static int highscore;
+   //public static int copyscore;
+    public GUIText guihighscore;
+   private static bool fire=true;
+  
+    void Start()
+    {
+        guiscore.text = "Score: 0";
+        guiscore.font.material.color = Color.red;
+        player = GameObject.Find("Player");
+        personcharacter = CharacterMotor.GetComponent<CharacterMotor>();
+        Awake();
+    }
 
-  void Start()
-  {
-      guiscore.text = "Score: 0";
-      guiscore.font.material.color = Color.black;
-      personcharacter = CharacterMotor.GetComponent<CharacterMotor>();
-  }
+    void Update()
+    {
+        time = time - Time.deltaTime;
+        float minutes = time / 60;
+        float seconds = time % 60;
+        float fraction = (time * 100) % 100;
+        if (time > 0)
+        {
+            guitimer.text = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, fraction);
+            guitimer.font.material.color = Color.black;
 
-  void Update()
-  {
-      time = time - Time.deltaTime;
-      float minutes = time / 60; float minutes1 = 0;
-      float seconds = time % 60; float seconds1 = 0;
-      float fraction = (time * 100) % 100; float fraction1 = 0;
-      if (time > 0)
-      {
-          guitimer.text = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, fraction);
-          guitimer.font.material.color = Color.black;
-          if (b == true)
-          {
-              time = 0;
-              guitimer.text = string.Format("{0:00}:{1:00}:{2:00}", minutes1, seconds1, fraction1);
-            
+        }
+
+
+        else 
+        {
+            if (fire == true)
+            {
+
+                guitimer.text = message;
+                guitimer.font.material.color = Color.red;
+                guitimer.fontSize = 60;
+            }
+
+            Application.LoadLevel("scene3");
+
+        }
+
+
+        guihighscore.text = "HighScore : " + PlayerPrefs.GetInt("HighScore");
+        guihighscore.font.material.color = Color.red;
+
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        
+
+
+        if (time > 0)
+        {
+
+            if (other.gameObject.isStatic && other.gameObject.collider.isTrigger)
+            {
+                score += 90;
+                b = true;
+            }
+            else
+            {
+                b = false;
+            }
+           
+
+            if ((other.gameObject.rigidbody && other.gameObject.collider.isTrigger) || (other.gameObject.rigidbody && 
+                other.gameObject.collider.isTrigger && other.gameObject.isStatic))
+            {
+                
+                iswin = true;
+                time = 0;
+                fire = false;
+
+            }
+            if (other.constantForce && other.gameObject.collider.isTrigger)
+            {
+               
+                islose = true;
+                time = 0;
+                fire = false;
+            }
+            if (other.gameObject.collider.isTrigger)
+            {
+
+
+                Destroy(other.gameObject);
+                score += 10;
+                guiscore.text = "Score: " + score;
              
-          }
-      }
-     
-      else
-      {
-          if (b == false)
-          {
-              //Object.Destroy(other.gameObject, 2.0f);
-              guitimer.text = message;
-              guitimer.font.material.color = Color.red;
-              guitimer.fontSize = 60;
-          }
 
-      }
-   
+                personcharacter.jumping.baseHeight = newjump;
+
+            }
+        }
+        if (b == true)
+        {
+            doorclip.Play("dooropen");
+        }
+
+        guihighscore.text = "HighScore : " + highscore ;
+        Awake();
+       
+
+    }
+
+   public static void Awake()
+        
+    {
+        highscore = PlayerPrefs.GetInt("HighScore"); 
+        
+        if (score >highscore)
+        {
+            highscore = score;
+            PlayerPrefs.SetInt("HighScore", highscore);
+            PlayerPrefs.Save();
+           
+           
+           
+        }
+        //copyscore = highscore;
+    }
     
-  }
-
-  void OnTriggerEnter(Collider other)
-  {
-      //personcharacter = CharacterMotor.GetComponent<CharacterMotor>();
-
-      if (time > 0)
-      {
-
-          if (other.gameObject.collider.isTrigger)
-          {
-
-
-              Destroy(other.gameObject);
-              score += 10;
-              guiscore.text = "Score: " + score;
-              b = true;
-
-              personcharacter.jumping.baseHeight = newjump;
-
-          }
-      }
-      else
-          {
-              Object.Destroy(gameObject, 1.0f);
-              b = false;
-
-          }
-  }
-          //if (other.gameObject.collider.name == "wall")
-          //{
-          //    personcharacter.jumping.baseHeight = oldjump;
-          //}
-
-  }
+}
 
            
            

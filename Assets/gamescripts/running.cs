@@ -8,7 +8,7 @@ public class running : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         personcharacter = CharacterMotor.GetComponent<CharacterMotor>();
-        personcharacter.movement.maxForwardSpeed=150;
+        personcharacter.movement.maxForwardSpeed=50;
 	
 	}
 	

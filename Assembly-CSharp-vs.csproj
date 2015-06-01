@@ -44,16 +44,22 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\door.cs" />
      <Compile Include="Assets\gamescripts\Gameover.cs" />
+     <Compile Include="Assets\gamescripts\MusicManager.cs" />
      <Compile Include="Assets\gamescripts\WaterSimple.cs" />
+     <Compile Include="Assets\gamescripts\coin.cs" />
      <Compile Include="Assets\gamescripts\collidingwall.cs" />
+     <Compile Include="Assets\gamescripts\floatigobject.cs" />
      <Compile Include="Assets\gamescripts\guitest.cs" />
+     <Compile Include="Assets\gamescripts\highscore.cs" />
      <Compile Include="Assets\gamescripts\jumping.cs" />
      <Compile Include="Assets\gamescripts\pickingobjects.cs" />
      <Compile Include="Assets\gamescripts\pickup.cs" />
      <Compile Include="Assets\gamescripts\running.cs" />
      <Compile Include="Assets\gamescripts\score.cs" />
      <Compile Include="Assets\gamescripts\timer.cs" />
+     <Compile Include="Assets\particles.cs" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Background.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Vertex Colored Shaders\Mobile Transparent Vertex Color.shader" />
